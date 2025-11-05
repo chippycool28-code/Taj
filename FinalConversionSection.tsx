@@ -54,7 +54,18 @@ const FinalConversionSection = () => {
   } else {
     // Show the actual form inputs (your original JSX structure)
     formContent = (
-      // YOUR FORM JSX GOES HERE (from Step 2 below)
+      <form name="partnership" method="POST" data-netlify="true" onSubmit={handleSubmit}> 
+        <input type="hidden" name="form-name" value="partnership" /> 
+        
+       
+        <button 
+            type="submit"
+            disabled={submissionStatus === 'loading'}
+            className="w-full bg-[#FF69B4] text-white font-bold py-4 px-10 rounded-full text-lg hover:bg-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+        >
+            {submissionStatus === 'loading' ? 'Sending...' : 'Request Partnership Consultation'}
+        </button>
+      </form> // End of formContent JSX
     );
   }
 
@@ -111,6 +122,7 @@ const FinalConversionSection = () => {
 
 
 export default FinalConversionSection;
+
 
 
 
