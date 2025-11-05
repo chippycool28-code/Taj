@@ -2,11 +2,6 @@
 import React from 'react';
 
 const FinalConversionSection = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    alert("Thank you for your interest! We will be in touch shortly to discuss a partnership.");
-  };
-
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-6">
@@ -15,28 +10,28 @@ const FinalConversionSection = () => {
           <p className="text-lg text-gray-600 mt-2">Fill out the form below to start the conversation about a partnership.</p>
         </div>
         <div className="max-w-2xl mx-auto bg-gray-50 p-8 rounded-xl shadow-lg">
-          <form onSubmit={handleSubmit}>
+          <form name="partnership" method="POST" data-netlify="true">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label htmlFor="universityName" className="block text-sm font-bold mb-2">University Name</label>
-                <input type="text" id="universityName" placeholder="e.g. State University" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300]" required />
+                <input type="text" name="universityName" id="universityName" placeholder="e.g. State University" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300]" required />
               </div>
               <div>
                 <label htmlFor="contactPerson" className="block text-sm font-bold mb-2">Contact Person</label>
-                <input type="text" id="contactPerson" placeholder="e.g. Jane Doe" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300]" required />
+                <input type="text" name="contactPerson" id="contactPerson" placeholder="e.g. Jane Doe" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300]" required />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-bold mb-2">Email</label>
-                <input type="email" id="email" placeholder="e.g. jane.doe@university.edu" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300]" required />
+                <input type="email" name="email" id="email" placeholder="e.g. jane.doe@university.edu" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300]" required />
               </div>
               <div>
                 <label htmlFor="phone" className="block text-sm font-bold mb-2">Phone Number</label>
-                <input type="tel" id="phone" placeholder="e.g. (555) 123-4567" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300]" />
+                <input type="tel" name="phone" id="phone" placeholder="e.g. (555) 123-4567" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300]" />
               </div>
             </div>
             <div className="mb-6">
               <label htmlFor="placementArea" className="block text-sm font-bold mb-2">Desired Placement Area</label>
-              <select id="placementArea" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300] bg-white">
+              <select id="placementArea" name="placementArea" className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#FFC300] bg-white">
                 <option>Library</option>
                 <option>Student Union</option>
                 <option>Dormitory / Residence Hall</option>
@@ -57,4 +52,8 @@ const FinalConversionSection = () => {
   );
 };
 
+
 export default FinalConversionSection;
+
+
+
