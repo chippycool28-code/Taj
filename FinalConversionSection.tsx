@@ -10,7 +10,7 @@ const FinalConversionSection = () => {
           <p className="text-lg text-gray-600 mt-2">Fill out the form below to start the conversation about a partnership.</p>
         </div>
         <div className="max-w-2xl mx-auto bg-gray-50 p-8 rounded-xl shadow-lg">
-          <form name="partnership" method="POST" data-netlify="true">
+          <form name="partnership" method="POST" data-netlify="true" action="/success.html">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label htmlFor="universityName" className="block text-sm font-bold mb-2">University Name</label>
@@ -54,4 +54,5 @@ const FinalConversionSection = () => {
 
 
 export default FinalConversionSection;
+
 
