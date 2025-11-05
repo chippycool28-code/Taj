@@ -1,7 +1,64 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 
 const FinalConversionSection = () => {
+  // 1. STATE: Add state to manage the loading/success status
+  const [submissionStatus, setSubmissionStatus] = useState('initial'); 
+  
+  // 2. HANDLER: Define the new asynchronous handler
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmissionStatus('loading'); // Show a loading state
+
+    // Gather form data, including the hidden netlify field
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      // 3. FETCH: Use fetch to submit the data to Netlify's internal endpoint
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString(),
+      });
+
+      if (response.ok) {
+        setSubmissionStatus('success');
+        form.reset(); // Clear the form fields
+      } else {
+        setSubmissionStatus('error');
+        console.error("Netlify form submission failed.", response.statusText);
+      }
+    } catch (error) {
+      setSubmissionStatus('error');
+      console.error("Submission failed due to network error.", error);
+    }
+  };
+
+  // 4. RENDERING: Render based on submission status
+  let formContent;
+
+  if (submissionStatus === 'success') {
+    formContent = (
+      <div className="text-center text-mint-green">
+        <h3 className="text-2xl font-bold mb-4">🥳 Success!</h3>
+        <p>Thank you for requesting a partnership consultation. We will be in touch within one business day!</p>
+      </div>
+    );
+  } else if (submissionStatus === 'error') {
+    formContent = (
+      <div className="text-center text-red-500">
+        <h3 className="text-2xl font-bold mb-4">Error!</h3>
+        <p>There was an issue submitting your form. Please try again or email us directly.</p>
+      </div>
+    );
+  } else {
+    // Show the actual form inputs (your original JSX structure)
+    formContent = (
+      // YOUR FORM JSX GOES HERE (from Step 2 below)
+    );
+  }
+
+  // 5. RETURN: The component's main return structure
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-6">
